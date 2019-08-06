@@ -10,7 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import GradientBoostingClassifier
-from xgboost import XGBClassifier
+# from xgboost import XGBClassifier
 from scipy.stats import pearsonr    # 计算相关系数
 
 data = pd.read_csv("data.csv",encoding="gbk")
