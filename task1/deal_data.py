@@ -2,6 +2,7 @@
 import pandas as pd
 import datetime
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from sklearn.feature_selection import VarianceThreshold # 计算方差
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction import DictVectorizer
@@ -60,7 +61,13 @@ trans = DictVectorizer()
 x_train = trans.fit_transform(x_train)
 x_test = trans.transform(x_test)
 
-# 过滤低方差特征
-trans = VarianceThreshold(threshold=2)
+# 标准化
+trans = StandardScaler(with_mean=False)
 x_train = trans.fit_transform(x_train)
+x_test = trans.transform(x_test)
+
+# 过滤低方差特征
+trans = VarianceThreshold(threshold=1)
+x_train = trans.fit_transform(x_train)
+x_test = trans.transform(x_test)
 print(x_train.shape)
