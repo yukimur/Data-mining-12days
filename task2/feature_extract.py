@@ -86,8 +86,8 @@ def CalcIV(Xvar, Yvar):
         N_0_group[i] = Yvar[(Xvar == np.unique(Xvar)[i]) & (Yvar == 0)].count()
         N_1_group[i] = Yvar[(Xvar == np.unique(Xvar)[i]) & (Yvar == 1)].count()
     iv = np.sum((N_0_group / N_0 - N_1_group / N_1) * np.log((N_0_group / N_0) / (N_1_group / N_1)))
-    if iv >= 1.0:  ## 处理极端值
-        iv = 1
+    if iv >= 1.0:  # 处理极端值
+        iv = 1.0
     return iv
 
 def caliv_batch(df, Yvar):
@@ -100,7 +100,7 @@ def caliv_batch(df, Yvar):
 
     return iv_df, ivlist
 
-im_iv, ivl = im_iv, ivl = caliv_batch(data.drop("status",axis=1),data["status"])
+im_iv, ivl = caliv_batch(data.drop("status",axis=1),data["status"])
 print(im_iv, ivl)
 
 
@@ -113,7 +113,7 @@ importances=forest.feature_importances_
 indices=np.argsort(importances)[::-1]
 for f in range(x_train.shape[1]):
     #给予10000颗决策树平均不纯度衰减的计算来评估特征重要性
-    print ("%2d) %-*s %f" % (f+1,30,feat_labels[f],importances[indices[f]]) )
+    print ("%2d) %-*s %f" % (f+1,30,feat_labels[f],importances[indices[f]]))
 #可视化特征重要性-依据平均不纯度衰减
 plt.title('Feature Importance-RandomForest')
 plt.bar(range(x_train.shape[1]),importances[indices],color='lightblue',align='center')
